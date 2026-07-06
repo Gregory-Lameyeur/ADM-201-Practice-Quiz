@@ -1,14 +1,18 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 
 function parseExplanation(explanation) {
   return explanation.split('|').map((s) => s.trim()).filter(Boolean)
 }
 
-export default function QuizScreen({ questions, onFinish }) {
-  const [currentIndex, setCurrentIndex] = useState(0)
+export default function QuizScreen({ cert, questions, initialIndex = 0, initialAnswers, onFinish, onProgress, onQuit }) {
+  const [currentIndex, setCurrentIndex] = useState(initialIndex)
   const [selected, setSelected] = useState([])
   const [submitted, setSubmitted] = useState(false)
-  const [answers, setAnswers] = useState(new Array(questions.length).fill(null))
+  const [answers, setAnswers] = useState(initialAnswers ?? new Array(questions.length).fill(null))
+
+  useEffect(() => {
+    onProgress?.(currentIndex, answers)
+  }, [currentIndex, answers, onProgress])
 
   const q = questions[currentIndex]
   const isMulti = q.answers.length > 1
@@ -34,13 +38,34 @@ export default function QuizScreen({ questions, onFinish }) {
     setSubmitted(true)
   }
 
+  const handleChangeAnswer = () => {
+    setSubmitted(false)
+  }
+
+  const goToQuestion = (index) => {
+    setCurrentIndex(index)
+    const existing = answers[index]
+    setSelected(existing ? [...existing] : [])
+    setSubmitted(!!existing)
+  }
+
   const handleNext = () => {
     if (currentIndex < total - 1) {
-      setCurrentIndex(currentIndex + 1)
-      setSelected([])
-      setSubmitted(false)
+      goToQuestion(currentIndex + 1)
     } else {
       onFinish(answers)
+    }
+  }
+
+  const handlePrevious = () => {
+    if (currentIndex > 0) {
+      goToQuestion(currentIndex - 1)
+    }
+  }
+
+  const handleQuit = () => {
+    if (window.confirm('Are you sure you want to quit? Your progress will be lost.')) {
+      onQuit()
     }
   }
 
@@ -76,13 +101,22 @@ export default function QuizScreen({ questions, onFinish }) {
             style={{ width: `${progress}%` }}
           />
         </div>
-        <div className="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between">
-          <span className="text-sm font-medium text-gray-400">
-            Question {currentIndex + 1} / {total}
-          </span>
-          <span className="text-xs text-gray-500">
-            ADM-201 Practice
-          </span>
+        <div className="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+          <div className="flex flex-col">
+            <span className="text-sm font-medium text-gray-400">
+              Question {currentIndex + 1} / {total}
+            </span>
+            <span className="text-xs text-gray-500">
+              {cert} Practice
+            </span>
+          </div>
+          <button
+            onClick={handleQuit}
+            className="shrink-0 text-xs font-semibold text-white bg-wrong hover:bg-wrong/85
+                       px-3 py-2 rounded-lg transition-all duration-200 active:scale-[0.98]"
+          >
+            Quit Quiz
+          </button>
         </div>
       </div>
 
@@ -139,30 +173,47 @@ export default function QuizScreen({ questions, onFinish }) {
                 )
               })}
             </div>
+            <button
+              onClick={handleChangeAnswer}
+              className="text-xs text-gray-400 hover:text-sf-cloud underline underline-offset-2 transition-colors"
+            >
+              Change answer
+            </button>
           </div>
         )}
 
-        {/* Action button */}
-        <div className="pt-4">
-          {!submitted ? (
+        {/* Action buttons */}
+        <div className="pt-4 flex gap-3">
+          {currentIndex > 0 && (
             <button
-              onClick={handleSubmit}
-              disabled={selected.length === 0}
-              className="w-full bg-sf-blue hover:bg-sf-cloud disabled:bg-gray-700 disabled:text-gray-500
-                         text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200
-                         active:scale-[0.98] disabled:active:scale-100"
+              onClick={handlePrevious}
+              className="shrink-0 border border-gray-600 hover:border-gray-400 text-gray-300 hover:text-white
+                         font-semibold py-3 px-6 rounded-lg transition-all duration-200 active:scale-[0.98]"
             >
-              Submit Answer
-            </button>
-          ) : (
-            <button
-              onClick={handleNext}
-              className="w-full bg-sf-blue hover:bg-sf-cloud text-white font-semibold py-3 px-6 rounded-lg
-                         transition-all duration-200 active:scale-[0.98]"
-            >
-              {currentIndex < total - 1 ? 'Next Question' : 'See Results'}
+              Previous
             </button>
           )}
+          <div className="flex-1">
+            {!submitted ? (
+              <button
+                onClick={handleSubmit}
+                disabled={selected.length === 0}
+                className="w-full bg-sf-blue hover:bg-sf-cloud disabled:bg-gray-700 disabled:text-gray-500
+                           text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200
+                           active:scale-[0.98] disabled:active:scale-100"
+              >
+                Submit Answer
+              </button>
+            ) : (
+              <button
+                onClick={handleNext}
+                className="w-full bg-sf-blue hover:bg-sf-cloud text-white font-semibold py-3 px-6 rounded-lg
+                           transition-all duration-200 active:scale-[0.98]"
+              >
+                {currentIndex < total - 1 ? 'Next Question' : 'See Results'}
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

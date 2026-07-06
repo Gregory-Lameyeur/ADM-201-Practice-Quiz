@@ -1,16 +1,7 @@
-function isAnswerCorrect(userAnswer, correctAnswers) {
-  if (!userAnswer) return false
-  if (userAnswer.length !== correctAnswers.length) return false
-  const sorted = [...userAnswer].sort()
-  const correct = [...correctAnswers].sort()
-  return sorted.every((a, i) => a === correct[i])
-}
+import { isAnswerCorrect, computeScore } from './utils'
 
 export default function ResultsScreen({ questions, userAnswers, onRetry, onNewQuiz }) {
-  const score = questions.reduce(
-    (acc, q, i) => acc + (isAnswerCorrect(userAnswers[i], q.answers) ? 1 : 0),
-    0
-  )
+  const score = computeScore(questions, userAnswers)
   const total = questions.length
   const pct = Math.round((score / total) * 100)
   const passed = pct >= 65
@@ -41,7 +32,7 @@ export default function ResultsScreen({ questions, userAnswers, onRetry, onNewQu
           className="flex-1 bg-surface border border-gray-600 hover:border-gray-400
                      text-gray-200 font-semibold py-3 px-6 rounded-lg transition-all duration-200"
         >
-          Retry Same Questions
+          Restart from Question 1
         </button>
         <button
           onClick={onNewQuiz}
@@ -96,7 +87,7 @@ export default function ResultsScreen({ questions, userAnswers, onRetry, onNewQu
           className="flex-1 bg-surface border border-gray-600 hover:border-gray-400
                      text-gray-200 font-semibold py-3 px-6 rounded-lg transition-all duration-200"
         >
-          Retry Same Questions
+          Restart from Question 1
         </button>
         <button
           onClick={onNewQuiz}

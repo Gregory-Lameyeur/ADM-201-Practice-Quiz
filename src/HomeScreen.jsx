@@ -1,9 +1,18 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-export default function HomeScreen({ maxQuestions, onStart }) {
+const CERTS = [
+  { id: 'ADM-201', label: 'ADM-201', subtitle: 'Salesforce Administrator Certification' },
+  { id: 'App Builder', label: 'App Builder', subtitle: 'Salesforce Certified App Builder' },
+]
+
+export default function HomeScreen({ cert, onSelectCert, maxQuestions, onStart }) {
   const min = 5
   const max = Math.min(150, maxQuestions)
   const [count, setCount] = useState(Math.min(20, max))
+
+  useEffect(() => {
+    setCount(Math.min(20, max))
+  }, [max])
 
   const handleChange = (e) => {
     const val = e.target.value
@@ -20,16 +29,34 @@ export default function HomeScreen({ maxQuestions, onStart }) {
     onStart(clamped)
   }
 
+  const activeCert = CERTS.find((c) => c.id === cert) ?? CERTS[0]
+
   return (
     <div className="flex items-center justify-center min-h-screen px-4">
       <div className="w-full max-w-md text-center space-y-8">
+        <div className="flex justify-center gap-2">
+          {CERTS.map((c) => (
+            <button
+              key={c.id}
+              onClick={() => onSelectCert(c.id)}
+              className={`px-5 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
+                c.id === cert
+                  ? 'bg-sf-blue text-white'
+                  : 'bg-surface text-gray-400 hover:text-gray-200'
+              }`}
+            >
+              {c.label}
+            </button>
+          ))}
+        </div>
+
         <div className="space-y-2">
           <div className="text-5xl font-bold text-sf-cloud">☁</div>
           <h1 className="text-3xl font-bold tracking-tight">
-            ADM-201 Practice Quiz
+            {activeCert.label} Practice Quiz
           </h1>
           <p className="text-gray-400">
-            Salesforce Administrator Certification
+            {activeCert.subtitle}
           </p>
         </div>
 
