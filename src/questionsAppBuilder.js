@@ -31,7 +31,7 @@ const questionsAppBuilder = [
       { letter: 'C', text: 'Invocable processes' },
       { letter: 'D', text: 'The ISCHANGED function' }
     ],
-    answers: ['C', 'D'],
+    answers: ['B', 'C'],
     explanation: "The two options that the app builder should avoid to prevent recursion are setting a criteria node to No criteria-just execute the procedure and invocable processes. Setting a criteria node to No criteria-just execute the procedure means that the process will always execute the actions regardless of the record values, which can cause recursion if the process updates the same record that triggered it. Invocable processes are processes that can be invoked from another process or a flow, which can cause recursion if the invocable process updates the same record that triggered the parent process or flow. Option A is incorrect because IF statements are not an option in Process Builder, but rather a function that can be used in formulas or conditions. Option D is incorrect because the ISCHANGED function is not an option in Process Builder, but rather a function that can be used in formulas or conditions to check if a field value has changed."
   },
   {
