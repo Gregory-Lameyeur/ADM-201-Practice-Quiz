@@ -422,7 +422,7 @@ const questionsAppBuilder = [
     explanation: "This formula concatenates the four custom fields for the Galactic Vendor's location into a single text value, separated by commas and spaces. The formula also uses the BR function to insert a line break after the second field, creating two lines of text."
   },
   {
-    question: "The sales Operations team at AWS Computing deletes accounts for a variety of a reasons. The sales ops director is worried that the Sales team may delete accounts that sales reps are actively selling into. Now should the app builder keep accounts with open opportunities from being deleted?",
+    question: "The sales Operations team at AWS Computing deletes accounts for a variety of a reasons. The sales ops director is worried that the Sales team may delete accounts that sales reps are actively selling into. How should the app builder keep accounts with open opportunities from being deleted?",
     options: [
       { letter: 'A', text: 'Create an Apex Trigger on the Account object' },
       { letter: 'B', text: 'Create a validation rule on the Account object.' },
