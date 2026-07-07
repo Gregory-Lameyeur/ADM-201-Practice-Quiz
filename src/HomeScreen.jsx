@@ -7,7 +7,7 @@ const CERTS = [
 
 export default function HomeScreen({ cert, onSelectCert, maxQuestions, onStart }) {
   const min = 5
-  const max = Math.min(150, maxQuestions)
+  const max = maxQuestions
   const [count, setCount] = useState(Math.min(20, max))
 
   useEffect(() => {
