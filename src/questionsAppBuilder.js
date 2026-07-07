@@ -124,7 +124,7 @@ const questionsAppBuilder = [
     explanation: "The best feature to use to ensure consistent case priority entry is Path. Path allows users to see key fields and guidance for each stage of a process, such as a case lifecycle. Path can also enforce data quality by making certain fields required at each stage."
   },
   {
-    question: "Manage at Universal Containers want a quick to create additional accounts to form a hierarchy from a parent account record. They want to auto-populate five fields based on the parent to make it easier for users to create the child accounts quickly.",
+    question: "Manage at Universal Containers want a quick way to create additional accounts to form a hierarchy from a parent account record. They want to auto-populate five fields based on the parent to make it easier for users to create the child accounts quickly.",
     options: [
       { letter: 'A', text: 'Custom Global Quick Action' },
       { letter: 'B', text: 'Custom Global Quick Account.' },
