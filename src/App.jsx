@@ -53,8 +53,22 @@ export default function App() {
   const [currentIndex, setCurrentIndex] = useState(savedSession?.currentIndex ?? 0)
   const [userAnswers, setUserAnswers] = useState(savedSession?.answers ?? [])
 
-  const startQuiz = useCallback((count) => {
-    const selected = shuffle(QUESTION_POOLS[cert]).slice(0, count)
+  const startQuiz = useCallback((countOrRange) => {
+    const pool = QUESTION_POOLS[cert]
+    let selected = []
+    if (typeof countOrRange === 'number') {
+      selected = shuffle(pool).slice(0, countOrRange)
+    } else if (countOrRange && typeof countOrRange === 'object') {
+      const len = pool.length
+      let from = Math.max(1, Math.min(len, Number(countOrRange.from) || 1))
+      let to = Math.max(1, Math.min(len, Number(countOrRange.to) || len))
+      if (from > to) [from, to] = [to, from]
+      // slice uses 0-based start and exclusive end
+      selected = pool.slice(from - 1, to)
+    } else {
+      // fallback: 10 questions or available maximum
+      selected = shuffle(pool).slice(0, Math.min(10, pool.length))
+    }
     setQuizQuestions(selected)
     setCurrentIndex(0)
     setUserAnswers(new Array(selected.length).fill(null))
