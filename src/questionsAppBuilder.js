@@ -444,7 +444,7 @@ const questionsAppBuilder = [
     explanation: "Creating both customer and dealer as accounts, adding each representative as a contact on the corresponding account, and creating an account hierarchy allows UC to properly structure and link the business entities. This cleanly displays the relationships between the parent customer and its dealers while maintaining separate billing entities and contacts."
   },
   {
-    question: "An app builder is creating a custom object called Testimonial__c and wants toconnect Testimonial__c records with both the submitter's Contact record and Account record. If the Account is deleted, the Testimonial__c should also be deleted. If the Contact is deleted, but the Account remains, the Testimonial__c should remain. How should this be accomplished?",
+    question: "An app builder is creating a custom object called Testimonial__c and wants to connect Testimonial__c records with both the submitter's Contact record and Account record. If the Account is deleted, the Testimonial__c should also be deleted. If the Contact is deleted, but the Account remains, the Testimonial__c should remain. How should this be accomplished?",
     options: [
       { letter: 'A', text: 'Make both the Contact and Account fields required on the Testimonial__c object and create lookup relationships fromTestimonial__c to Contact and to Account.' },
       { letter: 'B', text: 'Create a master-detail relationship from Testimonial__c to Accountand a lookup relationship from Testimonial__c to Contact.' },
@@ -455,7 +455,7 @@ const questionsAppBuilder = [
     explanation: 'To connect Testimonial__c records with both the submitter\'s Contact record and Account record, an app builder should create a master-detail relationship from Testimonial__c to Account and a lookup relationship from Testimonial__c to Contact. A master-detail relationship creates a parent-child relationship between two objects and allows for roll-up summary fields, sharing settings, and cascading actions. A lookup relationship creates a loose association between two objects and allows users to relate records from one object to another.'
   },
   {
-    question: "When an opportunity is closed date is pushed more than 30days, manager approval is required. An approval process is in place but reps frequently forget to submit for approval to run the process. How can an app builder ensure that these opportunities are submitted into the approval process?",
+    question: "When an opportunity closed date is pushed more than 30days, manager approval is required. An approval process is in place but reps frequently forget to submit for approval to run the process. How can an app builder ensure that these opportunities are submitted into the approval process?",
     options: [
       { letter: 'A', text: 'Change the entry criteria on the approval process to criteria are met and lock the record on initial submission.' },
       { letter: 'B', text: 'Use a validation rule and an email alert to the manager requesting approval.' },
@@ -477,7 +477,7 @@ const questionsAppBuilder = [
     explanation: 'The app builder should add the field to the custom report type field layout to troubleshoot this issue. A custom report type is a type of report that defines which objects and fields are available for reporting. The app builder can customize which fields are included in each custom report type by editing its field layout. If a new field is added to an object that is part of an unmanaged package, it will not be automatically added to the custom report type field layout. The app builder needs to manually add it to make it available as an option to add as a column in reports based on that custom report type. Option A, B, and D are not steps that can troubleshoot this issue.'
   },
   {
-    question: "The brokers at DreamHouse Realty (DR) are having an Issue when using the Salesforce mobile app on their (Phones. There are several key fields on the contact record they need access to at a glance. Because of the small screen, they currently have to scroll down the page to view the information. What should the app builder at DR use to configure the Salesforce mobile app to show these key fields at the top of the screen?",
+    question: "The brokers at DreamHouse Realty (DR) are having an Issue when using the Salesforce mobile app on their Phones. There are several key fields on the contact record they need access to at a glance. Because of the small screen, they currently have to scroll down the page to view the information. What should the app builder at DR use to configure the Salesforce mobile app to show these key fields at the top of the screen?",
     options: [
       { letter: 'A', text: 'Compact layout' },
       { letter: 'B', text: 'Record Detail component' },
@@ -488,7 +488,7 @@ const questionsAppBuilder = [
     explanation: 'Compact layouts control the display of fields in the highlights panel at the top of a record page in both the Salesforce mobile app and Lightning Experience.'
   },
   {
-    question: "Universal Containers uses a private sharing model for opportunities. This model CANNOT be changed due to a regional structure A new sales operations team has been created. This team needs to perform analysis on Opportunity data, all should have read arid write access to all Opportunities. What are two recommended solutions for the app builder to give the users appropriate access? Choose 2 answers",
+    question: "Universal Containers uses a private sharing model for opportunities. This model CANNOT be changed due to a regional structure A new sales operations team has been created. This team needs to perform analysis on Opportunity data, all should have read and write access to all Opportunities. What are two recommended solutions for the app builder to give the users appropriate access? Choose 2 answers",
     options: [
       { letter: 'A', text: 'Create a criteria-based sharing rule to all opportunities with the sales operations public group.' },
       { letter: 'B', text: 'Add a manual share for all opportunities with each user on the sales operations team.' },
@@ -776,10 +776,10 @@ const questionsAppBuilder = [
     explanation: "Before replacing workflow rules and Apex triggers with Process Builders, the app builder should consider avoiding generating infinite loops and combining actions when possible. Infinite loops can occur when a process updates a record that causes another process to run on the same record, and so on. Combining actions can reduce the number of processes and improve performance and maintainability."
   },
   {
-    question: "An app builder wanes to show Groups as the last navigation menu item in the mobile app. However, (he app builder is unable to select Groups as one of the items on the drop-down menu. What could cause this?",
+    question: "An app builder wants to show Groups as the last navigation menu item in the mobile app. However, the app builder is unable to select Groups as one of the items on the drop-down menu. What could cause this?",
     options: [
       { letter: 'A', text: 'Groups is available in the recent section of the navigation menu.' },
-      { letter: 'B', text: 'Groups is included m the Smart Search items butunavailable on the navigation menu.' },
+      { letter: 'B', text: 'Groups is included in the Smart Search items but unavailable on the navigation menu.' },
       { letter: 'C', text: 'Groups is unavailable in the selected list for the navigation menu.' },
       { letter: 'D', text: 'Groups is available in the Chatter section of the navigation menu.' }
     ],
@@ -809,7 +809,7 @@ const questionsAppBuilder = [
     explanation: "Creating a formula field on the Contact object and setting the value of the formula to TEXT(Account.Account_Region__c) would reflect the region of the related account on the contact record and stay in sync if the value changes on the account. This is the most efficient and maintainable way to meet the requirement. Creating a workflow rule or a picklist field would require additional configuration and complexity."
   },
   {
-    question: "Ann app builder has been to display an overdue date that is two months after a tasks due date. Which approach should the app builder take?",
+    question: "An app builder has been asked to display an overdue date that is two months after a tasks due date. Which approach should the app builder take?",
     options: [
       { letter: 'A', text: 'Use process builder and set overdue date equal to Due Date + ((365/12)*2)' },
       { letter: 'B', text: 'Create a formula field using Due Date + 60' },
@@ -1052,7 +1052,7 @@ const questionsAppBuilder = [
     explanation: 'When the Allow Customer Invitations setting is enabled, customers (external users) can be invited to specific Chatter groups as external members, allowing collaboration and communication within those groups only. Why A (The ability to interact with members of their groups) is correct: External users invited to Chatter groups can post, comment, and interact with members of the groups they belong to, but can\'t access information outside those groups. Why not B: External users cannot @mention accounts; they can only mention members of their groups. Why not C: External users cannot invite others to groups - only internal members or group owners can. Why not D: External users cannot request to join public groups unless invited.'
   },
   {
-    question: "An app builder at Cloud Kicks created accustom object and related fields in the schema builder. What next steps should the app build take to ensure users can access the new object and fields?",
+    question: "An app builder at Cloud Kicks created a custom object and related fields in the schema builder. What next steps should the app builder take to ensure users can access the new object and fields?",
     options: [
       { letter: 'A', text: 'Create a permission set for access to the object and fields.' },
       { letter: 'B', text: 'Allow reporting for the object and fields.' },
@@ -1113,7 +1113,7 @@ const questionsAppBuilder = [
       { letter: 'A', text: 'Create a master-detail relationship on Open_Position__c to Application__c' },
       { letter: 'B', text: 'Create a master-detail relationship held on Applicant__c to Application__c' },
       { letter: 'C', text: 'Create a master-detailrelationship field on Application__c to Open.Position__c' },
-      { letter: 'D', text: 'Create a master-detail relationship field on Applicant__c to Apphcabon_c' }
+      { letter: 'D', text: 'Create a master-detail relationship field on Applicant__c to Application_c' }
     ],
     answers: ['D'],
     explanation: 'Create a master-detail relationship field on Applicant__c to Application__c is what the app builder should recommend to meet the requirements of allowing the same applicant to apply for multiple open positions using a single application. This will create a many-to-many relationship between Applicant__c and Open_Position__c using Application__c as a junction object. Create a master-detail relationship on Open_Position__c to Application__c, create a master-detail relationship field on Application__c to Open_Position__c, and create a lookup relationship field on Applicant__c to Application__c are not valid or correct ways to create a many-to-many relationship.'
@@ -1152,7 +1152,7 @@ const questionsAppBuilder = [
     explanation: 'The formula for creating a visual indicator flag on each case based on the case priority should use the IMAGE and CASE functions. The IMAGE function returns an image for a given URL, and the CASE function evaluates an expression and returns a value based on that expression. Option A and D use these functions correctly, while option B and C do not.'
   },
   {
-    question: "To increase adoption, Universal Containers is proposing changes to its Salesforce data model to allow easier visibility for sales reps into key metrics. The proposal has three custom objectsrelated to the Account object, one with a master-detail, and two that are not. Each of these objects has 15 fields they would like to summarize on the Account object. What are two considerations for this proposal? Choose 2 answers",
+    question: "To increase adoption, Universal Containers is proposing changes to its Salesforce data model to allow easier visibility for sales reps into key metrics. The proposal has three custom objects related to the Account object, one with a master-detail, and two that are not. Each of these objects has 15 fields they would like to summarize on the Account object. What are two considerations for this proposal? Choose 2 answers",
     options: [
       { letter: 'A', text: 'Roll-up summaries allow MAX, MIN, SUM, COUNT, and AVG.' },
       { letter: 'B', text: 'An object can have 20 object references.' },
@@ -1251,7 +1251,7 @@ const questionsAppBuilder = [
     explanation: 'Reference: Salesforce Help - Custom Report Types'
   },
   {
-    question: "Cloud Kicks has created accustom object called Interests which is joined to Accounts by way of a junction object called Account Interest. What is the impact to users attempting to view an Account and the associated Account Interest records if they are without read access to the Interest object?",
+    question: "Cloud Kicks has created a custom object called Interests which is joined to Accounts by way of a junction object called Account Interest. What is the impact to users attempting to view an Account and the associated Account Interest records if they are without read access to the Interest object?",
     options: [
       { letter: 'A', text: 'Users will be able to view the Account Interest records and will have read-only access to the Interest records.' },
       { letter: 'B', text: 'Users will be unable to view Account records that have a related Account Interest record.' },
@@ -1539,9 +1539,9 @@ const questionsAppBuilder = [
     explanation: "The \"Accordion\" Lightning component is designed to break up content into collapsible sections. This component would be suitable for managing the visibility of large numbers of fields by grouping them into separate tabs or sections that can expand and collapse. This makes navigation easier and declutters the interface. Highlights panel is used for displaying key record information at the top of the page and is not designed for managing multiple fields. Record detail displays all fields on a single layout, which does not suit the requirement to break up the fields. Field section does not exist as a standard Lightning component."
   },
   {
-    question: "The Recruiting ream at AW Computing captures thejob acceptance and date of hire of a candidate on the Job Application custom object. Once the candidate accepts the recruiter s job offer, the date of hire should be entered and not be changed on subsequent cecord edit. Which validation formula should the app builder use?",
+    question: "The Recruiting team at AW Computing captures the job acceptance and date of hire of a candidate on the Job Application custom object. Once the candidate accepts the recruiter's job offer, the date of hire should be entered and not be changed on subsequent record edit. Which validation formula should the app builder use?",
     options: [
-      { letter: 'A', text: 'NOT(ISCLANK(Job_Accepted_c)) && ISCHANGED(Hire_Date_c)' },
+      { letter: 'A', text: 'NOT(ISBLANK(Job_Accepted_c)) && ISCHANGED(Hire_Date_c)' },
       { letter: 'B', text: '(ISBLANK(Job_Accepted_c) II NOT(lSCMANGED(Mire_Daie_c))' },
       { letter: 'C', text: 'NOT{IS&lANK(Job_Accepted_c)) II ISCHANGED(Hire_Date_c)' },
       { letter: 'D', text: '(lSBLANK(Job_Accepted_c) && NOT(lSCHANGED(Hire_Date_c))' }
@@ -1838,7 +1838,7 @@ const questionsAppBuilder = [
     explanation: "Set the Organization-Wide Default to Private for accounts and create criteria-based sharing rules for each marketing team are the actions that can accomplish the requirement of restricting access to accounts based on region and role. Setting the Organization-Wide Default to Private will limit access to accounts to only owners and administrators. Creating criteria-based sharing rules will grant additional access to accounts based on region for each marketing team. Creating an Inside Sales Team profile with the \"View All\" setting for accounts will grant access to all accounts for the inside sales team. Update the Sales profile, update the organization-wide defaults to Public for accounts, create profiles for each marketing team, create permission sets for each marketing team, and create an Inside Sales Team role are not necessary or sufficient actions for this requirement."
   },
   {
-    question: "Which three options art availably when activating a Lightning page from the Lightning App Builder? Choose 3 answers",
+    question: "Which three options are availably when activating a Lightning page from the Lightning App Builder? Choose 3 answers",
     options: [
       { letter: 'A', text: 'Assign the page to a combination of apps and profiles.' },
       { letter: 'B', text: 'Assign the page to a combination of apps and permission sets.' },
