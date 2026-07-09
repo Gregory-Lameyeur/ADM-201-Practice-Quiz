@@ -1912,7 +1912,7 @@ const questionsAppBuilder = [
       { letter: 'C', text: 'Build a Flow that uses API calls.' },
       { letter: 'D', text: 'Use a scheduled Apex job.' }
     ],
-    answers: ['A'],
+    answers: ['B'],
     explanation: "The best way to implement this request is to create a Lightning Web Component that can fetch the real-time stock price from an external API and display it on the Account record page. Installing a solution from the AppExchange may not be feasible as it may not match the exact requirements or may have additional costs. Building a Flow that uses API calls may not be efficient as it may consume API limits and may not be able to update the stock price in real-time. Using a scheduled Apex job may not be suitable as it may not be able to run frequently enough to reflect the real-time stock price."
   },
   {
@@ -2782,7 +2782,7 @@ const questionsAppBuilder = [
       { letter: 'A', text: 'Add Path on Account hierarchy' },
       { letter: 'B', text: 'Add a custom link on Account' },
       { letter: 'C', text: 'Customize a Global Quick Action' },
-      { letter: 'D', text: 'A Create a custom action' }
+      { letter: 'D', text: 'Create a custom action' }
     ],
     answers: ['D'],
     explanation: "Create a custom action is the recommended solution to meet the requirement of creating additional accounts to form a hierarchy from a Parent Account record. According to the Salesforce documentation, \"Actions let users quickly create or update records, log calls, send emails, and more, in the context of a particular object.\". A custom action can auto-populate fields based on the parent account and make it easier for users to create child accounts. Add Path on Account hierarchy, add a custom link on Account, and customize a Global Quick Action are not valid or feasible options."
@@ -2859,7 +2859,7 @@ const questionsAppBuilder = [
       { letter: 'A', text: 'Text' },
       { letter: 'B', text: 'Text Area' },
       { letter: 'C', text: 'Picklise' },
-      { letter: 'D', text: 'Checkbox. This field type allows users to clearly indicate (Yes/No) whether a contract has been sent. This binary nature of checkboxes makes it simple to filter and report on Opportunities based on whether a contract was sent.' }
+      { letter: 'D', text: 'Checkbox' }
     ],
     answers: ['D'],
     explanation: "For tracking whether contracts have been sent for Opportunities: Checkbox. This field type allows users to clearly indicate (Yes/No) whether a contract has been sent. This binary nature of checkboxes makes it simple to filter and report on Opportunities based on whether a contract was sent. Steps to configure this field: Navigate to Setup → Object Manager → Opportunity. Click Fields & Relationships → New → Checkbox. Define the field with a label (e.g., Contract Sent). Set the default value to false (unchecked). Add the field to the relevant page layouts. This setup facilitates accurate reporting and ensures that opportunities cannot be marked as \"Closed Won\" without indicating whether a contract was sent."
@@ -2942,7 +2942,7 @@ const questionsAppBuilder = [
     explanation: 'Sales reps are forgetting to manually submit the record for approval. The correct declarative solution is to automate the submission when conditions are met - in this case, when the Opportunity Close Date is pushed more than 30 days. This can be achieved using Flow Builder or Process Builder to automatically submit the record into the existing approval process. This ensures the approval process runs automatically whenever the rule is triggered, eliminating user dependency.'
   },
   {
-    question: "Universal Containers utilizes opportunities and a custom object called Detaited.Sales__c. The company would like to roll sales metrics up to an opportunity for only Detailed.Sales__c records that have their picklist status set to Active. What is the recommended method for the app builder to achieve this request?",
+    question: "Universal Containers utilizes opportunities and a custom object called Detailed.Sales__c. The company would like to roll sales metrics up to an opportunity for only Detailed.Sales__c records that have their picklist status set to Active. What is the recommended method for the app builder to achieve this request?",
     options: [
       { letter: 'A', text: 'Utilize the AppExchange to download a third-party application that can roll_up the sales dollars with the appropriate filter.' },
       { letter: 'B', text: 'Create a master-detail relationship between the parent and child object with a roll-up summary field that fitters on the status held.' },
@@ -3044,7 +3044,7 @@ const questionsAppBuilder = [
     question: "An app Builder creates an Account validation rule on the Industry field that will throw an error if the length of the field is longer than 6 characters. Another App Builder creates a workflow rule with a field update that sets the Industry field to Technology whenever the Billing City field is set to San Francisco. What will happen the next time a sales person saves an Account with a Billing City of San Francisco?",
     options: [
       { letter: 'A', text: 'The record will save and the Industry field will change to Technology' },
-      { letter: 'B', text: 'The record will not save and the validation rule\'s error messagewill be displayed' },
+      { letter: 'B', text: 'The record will not save and the validation rule\'s error message will be displayed' },
       { letter: 'C', text: 'The record will not save and no error message will be displayed' },
       { letter: 'D', text: 'The record will save but the Industry field will not change to Technology' }
     ],
@@ -3108,7 +3108,7 @@ const questionsAppBuilder = [
     explanation: "The app builder should create a sharing rule that grants the users Read/Write access to the Application records. A sharing rule is a type of rule that can extend record access to groups of users based on certain criteria. In this case, the app builder can create a sharing rule that grants Read/Write access to the Application object to the recruiters based on their role, public group, or queue. This will allow them to edit the Application records related to any Internship record, regardless of the ownership. Option A, B, and C are not ways to configure the proper access."
   },
   {
-    question: "Cloud Kicks (CK) Is finding sales reps are Inconsistent in data entry when deals are won. CK requires that custom shoes are shipped within two weeks after the close date. A custom field called Scheduled Ship Date on the opportunity records the ship date.How should the app butler ensure this field is properly filed out before setting the opportunity to closed won?",
+    question: "Cloud Kicks (CK) Is finding sales reps are Inconsistent in data entry when deals are won. CK requires that custom shoes are shipped within two weeks after the close date. A custom field called Scheduled Ship Date on the opportunity records the ship date.How should the app builder ensure this field is properly filed out before setting the opportunity to closed won?",
     options: [
       { letter: 'A', text: 'OR(ISPICKVAL( StageName ,"Closed Won") && ( Scheduled_Ship_Date_cCloseDate)>14,ISBLANK(Scheduled_Ship_Date_c))' },
       { letter: 'B', text: 'OR(ISPICKVAL( StageName ="Closed Won") && ( Scheduled_Ship_Date__c- CloseDate ) > 14,ISBLANK(Scheduled_Ship_Date__c))' },
@@ -3296,7 +3296,7 @@ const questionsAppBuilder = [
     explanation: "Create a Chatter stream. This is correct because a Chatter stream allows users to follow multiple records and people in one feed, and filter the feed by selecting a stream."
   },
   {
-    question: "Sales reps at Universal Containers use Salesforce on their mobile devices. They want a way to odd new contacts quickly and then follow up later to complete the additional Information necessary. What mobile solution should an App Builder recommend?",
+    question: "Sales reps at Universal Containers use Salesforce on their mobile devices. They want a way to add new contacts quickly and then follow up later to complete the additional Information necessary. What mobile solution should an App Builder recommend?",
     options: [
       { letter: 'A', text: 'Customize the mobile menu to move Contacts to the top.' },
       { letter: 'B', text: 'Build a global action to create Contacts.' },
@@ -3356,7 +3356,7 @@ const questionsAppBuilder = [
       { letter: 'A', text: 'Update the important fields to be required on the page layout' },
       { letter: 'B', text: 'Make a formula field to check the format of the important fields' },
       { letter: 'C', text: 'Create a workflow rule to check the fields are formatted correctly' },
-      { letter: 'D', text: 'Configure a validation to require a field for a specific record type' }
+      { letter: 'D', text: 'Configure a validation rule to require a field for a specific record type' }
     ],
     answers: ['D'],
     explanation: "Configuring a validation rule to require a field for a specific record type is the best way to ensure that important fields are entered and formatted correctly. Updating the important fields to be required on the page layout will not prevent users from entering invalid data using other methods, such as data loader or quick actions. Making a formula field to check the format of the important fields will not prevent users from entering invalid data, but only display a message or an indicator. Creating a workflow rule to check the fields are formatted correctly will not prevent users from entering invalid data, but only trigger an action after the data is saved."
