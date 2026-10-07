@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react'
 import adm201Questions from './questions'
 import appBuilderQuestions from './questionsAppBuilder'
+import platformDev1Questions from './questionsPlatformDev1'
 import HomeScreen from './HomeScreen'
 import QuizScreen from './QuizScreen'
 import ResultsScreen from './ResultsScreen'
@@ -9,6 +10,7 @@ import { computeScore } from './utils'
 const QUESTION_POOLS = {
   'ADM-201': adm201Questions,
   'App Builder': appBuilderQuestions,
+  'Platform Dev 1': platformDev1Questions,
 }
 
 const SESSION_KEY = 'quizSession'
@@ -53,8 +55,11 @@ export default function App() {
   const [currentIndex, setCurrentIndex] = useState(savedSession?.currentIndex ?? 0)
   const [userAnswers, setUserAnswers] = useState(savedSession?.answers ?? [])
 
-  const startQuiz = useCallback((countOrRange) => {
-    const pool = QUESTION_POOLS[cert]
+  const startQuiz = useCallback((countOrRange, selectedSections) => {
+    const fullPool = QUESTION_POOLS[cert]
+    const pool = selectedSections && selectedSections.length > 0
+      ? fullPool.filter(q => q.section && selectedSections.includes(q.section))
+      : fullPool
     let selected = []
     if (typeof countOrRange === 'number') {
       selected = shuffle(pool).slice(0, countOrRange)
@@ -63,10 +68,8 @@ export default function App() {
       let from = Math.max(1, Math.min(len, Number(countOrRange.from) || 1))
       let to = Math.max(1, Math.min(len, Number(countOrRange.to) || len))
       if (from > to) [from, to] = [to, from]
-      // slice uses 0-based start and exclusive end
       selected = pool.slice(from - 1, to)
     } else {
-      // fallback: 10 questions or available maximum
       selected = shuffle(pool).slice(0, Math.min(10, pool.length))
     }
     setQuizQuestions(selected)
@@ -128,7 +131,7 @@ export default function App() {
         <HomeScreen
           cert={cert}
           onSelectCert={setCert}
-          maxQuestions={QUESTION_POOLS[cert].length}
+          allQuestions={QUESTION_POOLS[cert]}
           onStart={startQuiz}
         />
       )}

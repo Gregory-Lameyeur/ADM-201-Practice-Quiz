@@ -1,45 +1,70 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 
 const CERTS = [
   { id: 'ADM-201', label: 'ADM-201', subtitle: 'Salesforce Administrator Certification' },
   { id: 'App Builder', label: 'App Builder', subtitle: 'Salesforce Certified App Builder' },
+  { id: 'Platform Dev 1', label: 'Platform Dev 1', subtitle: 'Salesforce Certified Platform Developer I' },
 ]
 
-export default function HomeScreen({ cert, onSelectCert, maxQuestions, onStart }) {
+export default function HomeScreen({ cert, onSelectCert, allQuestions, onStart }) {
   const min = 5
-  const max = maxQuestions
-  const [count, setCount] = useState(Math.min(20, max))
-  const [mode, setMode] = useState('random') // 'random' or 'range'
+
+  const sections = useMemo(() => {
+    const s = [...new Set(allQuestions.map(q => q.section).filter(Boolean))]
+    return s.sort()
+  }, [allQuestions])
+
+  const hasSections = sections.length > 0
+
+  const [selectedSections, setSelectedSections] = useState([])
+  const [mode, setMode] = useState('random')
   const [rangeStart, setRangeStart] = useState(1)
-  const [rangeEnd, setRangeEnd] = useState(Math.min(10, max))
+  const [rangeEnd, setRangeEnd] = useState(10)
+  const [count, setCount] = useState(20)
+
+  const filteredPool = useMemo(() => {
+    if (!hasSections || selectedSections.length === 0) return allQuestions
+    return allQuestions.filter(q => q.section && selectedSections.includes(q.section))
+  }, [allQuestions, selectedSections, hasSections])
+
+  const max = filteredPool.length
+
+  useEffect(() => {
+    setSelectedSections([])
+  }, [cert])
 
   useEffect(() => {
     setCount(Math.min(20, max))
+    setRangeEnd(Math.min(10, max))
+    setRangeStart(1)
   }, [max])
+
+  const toggleSection = (section) => {
+    setSelectedSections(prev =>
+      prev.includes(section) ? prev.filter(s => s !== section) : [...prev, section]
+    )
+  }
 
   const handleChange = (e) => {
     const val = e.target.value
-    if (val === '') {
-      setCount('')
-      return
-    }
+    if (val === '') { setCount(''); return }
     const num = parseInt(val, 10)
     if (!isNaN(num)) setCount(num)
   }
 
   const handleStart = () => {
+    const sections = hasSections && selectedSections.length > 0 ? selectedSections : null
     if (mode === 'random') {
       const clamped = Math.max(min, Math.min(max, Number(count) || min))
-      onStart(clamped)
+      onStart(clamped, sections)
       return
     }
-    // range mode
     let from = Number(rangeStart) || 1
     let to = Number(rangeEnd) || Math.min(10, max)
     if (from < 1) from = 1
     if (to > max) to = max
     if (from > to) [from, to] = [to, from]
-    onStart({ from, to })
+    onStart({ from, to }, sections)
   }
 
   const activeCert = CERTS.find((c) => c.id === cert) ?? CERTS[0]
@@ -47,7 +72,7 @@ export default function HomeScreen({ cert, onSelectCert, maxQuestions, onStart }
   return (
     <div className="flex items-center justify-center min-h-screen px-4">
       <div className="w-full max-w-md text-center space-y-8">
-        <div className="flex justify-center gap-2">
+        <div className="flex justify-center gap-2 flex-wrap">
           {CERTS.map((c) => (
             <button
               key={c.id}
@@ -74,6 +99,41 @@ export default function HomeScreen({ cert, onSelectCert, maxQuestions, onStart }
         </div>
 
         <div className="bg-surface rounded-2xl p-8 space-y-6">
+
+          {hasSections && (
+            <div className="space-y-2 text-left">
+              <p className="text-sm font-medium text-gray-300">Filter by topic</p>
+              <div className="space-y-1">
+                {sections.map(section => {
+                  const sectionCount = allQuestions.filter(q => q.section === section).length
+                  const checked = selectedSections.includes(section)
+                  return (
+                    <label
+                      key={section}
+                      className={`flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer transition-colors ${
+                        checked ? 'bg-sf-blue/20 text-white' : 'text-gray-400 hover:text-gray-200 hover:bg-surface-light'
+                      }`}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={() => toggleSection(section)}
+                        className="accent-sf-blue w-4 h-4 flex-shrink-0"
+                      />
+                      <span className="text-sm flex-1">{section}</span>
+                      <span className="text-xs text-gray-500">{sectionCount}q</span>
+                    </label>
+                  )
+                })}
+              </div>
+              {selectedSections.length > 0 && (
+                <p className="text-xs text-gray-500 pt-1">
+                  {max} question{max !== 1 ? 's' : ''} in selected topic{selectedSections.length !== 1 ? 's' : ''}
+                </p>
+              )}
+            </div>
+          )}
+
           <div className="space-y-2">
             <div className="flex gap-2 mb-2">
               <button
@@ -149,7 +209,7 @@ export default function HomeScreen({ cert, onSelectCert, maxQuestions, onStart }
         </div>
 
         <p className="text-xs text-gray-600">
-          Questions are randomly selected from a pool of {maxQuestions}
+          Questions are randomly selected from a pool of {allQuestions.length}
         </p>
       </div>
     </div>

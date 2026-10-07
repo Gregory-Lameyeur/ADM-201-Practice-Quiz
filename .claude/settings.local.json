@@ -21,7 +21,14 @@
       "Bash(npm init *)",
       "Bash(node verify.js)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:5173 --max-time 2)",
-      "Bash(node verify3.js)"
+      "Bash(node verify3.js)",
+      "Bash(claude config *)",
+      "Bash(cat ~/.claude/config.json 2>/dev/null | grep -v \"api_key\\\\|token\\\\|secret\" || echo \"Not found\")",
+      "Read(//Users/glameyeur/.claude/**)",
+      "Bash(ls ~/.claude/ 2>/dev/null)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('Account/org keys:', [k for k in d.keys\\(\\) if 'account' in k.lower\\(\\) or 'org' in k.lower\\(\\) or 'user' in k.lower\\(\\) or 'email' in k.lower\\(\\)]\\)\")",
+      "Bash(claude auth *)",
+      "Bash(python3 -c ' *)"
     ]
   }
 }

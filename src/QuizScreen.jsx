@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react'
 
 function parseExplanation(explanation) {
+  if (!explanation) return []
   return explanation.split('|').map((s) => s.trim()).filter(Boolean)
 }
 
