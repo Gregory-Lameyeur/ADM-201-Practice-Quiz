@@ -268,8 +268,9 @@ const platformDev1Questions = [
     question: "What is an example of a polymorphic lookup field in Salesforce?",
     options: [
       { letter: "A", text: "The Leadld and Contactld fields on the standard Campaign Member object" },
-      { letter: "B", text: "The Whatld field on the standard Event object" },
-      { letter: "C", text: "The Parentld field on the standard Account object" },
+      { letter: "B", text: "A custom field, Link_c, on the standard Contact ojbect that looks up to an Account or a Campaign" },
+      { letter: "C", text: "The Whatld field on the standard Event object" },
+      { letter: "D", text: "The Parentld field on the standard Account object" },
     ],
     answers: ["C"],
   },
