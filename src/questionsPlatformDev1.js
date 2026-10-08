@@ -12,7 +12,7 @@ const platformDev1Questions = [
   },
   {
     section: "Developer Fundamentals",
-    question: "Universal Hiring is using Salesforce to capture job applications. A salesforce administrator objects; Job_c acting as the master object, Job_Application_c acting as the detail. Within the Job_c object, a custom multi-select picklist, Preferred Locations__c, contact states for the position. Each Job Application_c record relates to a Contact within the masterdetail relationship. Recruiters have requested the ability to view whether the Contact's Mailing State value on the Preferred_Locations_c field ,within the Job App1icacion_c record. Recruiters be kept in sync, If changes occur to the Contact's Mailing State or if the Job's Preferred updated. What is the recommended tool a developer should use to meet the business requirements?",
+    question: "Universal Hiring is using Salesforce to capture job applications. A salesforce administrator objects; Job_c acting as the master object, Job_Application_c acting as the detail. Within the Job_c object, a custom multi-select picklist, Preferred Locations__c, contact states for the position. Each Job Application_c record relates to a Contact within the masterdetail relationship. Recruiters have requested the ability to view whether the Contact's Mailing State value on the Preferred_Locations_c field ,within the Job Application_c record. Recruiters want to be kept in sync, If changes occur to the Contact's Mailing State or if the Job's Preferred updated. What is the recommended tool a developer should use to meet the business requirements?",
     options: [
       { letter: "A", text: "Apex trigger" },
       { letter: "B", text: "Record-triggered flow" },
@@ -23,7 +23,7 @@ const platformDev1Questions = [
   },
   {
     section: "Developer Fundamentals",
-    question: "A large corporation stores Orders and Line Items in Salesforce for different lines of business. Users are allowed see Orders across the entire organization, but for security purposes, should only be able to see the Line Orders in their line of business. Which type of relationship should be used between Line Items and Orders?",
+    question: "A large corporation stores Orders and Line Items in Salesforce for different lines of business. Users are allowed to see Orders across the entire organization, but for security purposes, should only be able to see the Line Orders in their line of business. Which type of relationship should be used between Line Items and Orders?",
     options: [
       { letter: "A", text: "Master-Detail" },
       { letter: "B", text: "Lookup" },
@@ -37,19 +37,20 @@ const platformDev1Questions = [
     question: "What Is an example of a polymorphic lookup field in Salesforce?",
     options: [
       { letter: "A", text: "The WhatId field on the standard Event object" },
-      { letter: "B", text: "The LeadId and ContactId fields on the standard Campaign Member object" },
-      { letter: "C", text: "The ParentId field on the standard Account object" },
+      { letter: "B", text: "A custom field, Link_c, on the standard Contact object that looks up to an Account" },
+      { letter: "C", text: "The LeadId and ContactId fields on the standard Campaign Member object" },
+      { letter: "D", text: "The ParentId field on the standard Account object" },
     ],
     answers: ["A"],
   },
   {
     section: "Developer Fundamentals",
-    question: "When a user edits the Postal Code on an Account, a custom Account text field named \"Tim updated based on the values in another custom object called PostalCodeToTimezone_c. What is the optimal way to implement this feature?",
+    question: "When a user edits the Postal Code on an Account, a custom Account text field named \"Tim updated based on the values in another custom object called PostalCodeToTimezone_c.\ What is the optimal way to implement this feature?",
     options: [
       { letter: "A", text: "Create an account approval process" },
-      { letter: "B", text: "Build a flow with Flow Builder." },
-      { letter: "C", text: "Create a formula field." },
-      { letter: "D", text: "Build an account assignment rule," },
+      { letter: "B", text: "Build a flow with Flow Builder" },
+      { letter: "C", text: "Create a formula field" },
+      { letter: "D", text: "Build an account assignment rule" },
     ],
     answers: ["B"],
   },
@@ -288,8 +289,9 @@ const platformDev1Questions = [
     question: "What is fundamental different between a Mater-Detail relationship and a Lookup relationship?",
     options: [
       { letter: "A", text: "In a Master-Detail relationship, when a record of a master object is deleted, the detail records are not deleted." },
-      { letter: "B", text: "In a Lookup relationship, the field value is mandatory." },
-      { letter: "C", text: "In a Lookup relationship when the parent record is deleted, the child records are always deleted." },
+      { letter: "B", text: "A Master-Detail relationship detail record inherits the sharing and security of master record." },
+      { letter: "C", text: "In a Lookup relationship, the field value is mandatory." },
+      { letter: "D", text: "In a Lookup relationship when the parent record is deleted, the child records are always deleted." },
     ],
     answers: ["B"],
   },
