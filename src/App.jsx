@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from 'react'
 import adm201Questions from './questions'
 import appBuilderQuestions from './questionsAppBuilder'
 import platformDev1Questions from './questionsPlatformDev1'
+import platformDev1V2Questions from './questionsPlatformDev1v2'
 import HomeScreen from './HomeScreen'
 import QuizScreen from './QuizScreen'
 import ResultsScreen from './ResultsScreen'
@@ -11,6 +12,7 @@ const QUESTION_POOLS = {
   'ADM-201': adm201Questions,
   'App Builder': appBuilderQuestions,
   'Platform Dev 1': platformDev1Questions,
+  'Platform Dev 1 v2': platformDev1V2Questions,
 }
 
 const SESSION_KEY = 'quizSession'

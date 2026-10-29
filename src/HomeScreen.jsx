@@ -4,6 +4,7 @@ const CERTS = [
   { id: 'ADM-201', label: 'ADM-201', subtitle: 'Salesforce Administrator Certification' },
   { id: 'App Builder', label: 'App Builder', subtitle: 'Salesforce Certified App Builder' },
   { id: 'Platform Dev 1', label: 'Platform Dev 1', subtitle: 'Salesforce Certified Platform Developer I' },
+  { id: 'Platform Dev 1 v2', label: 'PD1 v2', subtitle: 'Salesforce Certified Platform Developer I (v2)' },
 ]
 
 export default function HomeScreen({ cert, onSelectCert, allQuestions, onStart }) {
